@@ -34,9 +34,16 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
+                @auth
+                    <li>
+                        <a href="{{ URL :: to('/main') }}">
+                            <i class="metismenu-icon pe-7s-home"></i>
+                            Main Page
+                        </a>
+                    </li>
                 <li>
                     <a href="{{ URL :: to('/user/dashboard') }}">
-                        <i class="metismenu-icon pe-7s-home"></i>
+                        <i class="metismenu-icon pe-7s-settings"></i>
                         Dashboard
                     </a>
                 </li>
@@ -44,6 +51,12 @@
                     <a href="{{ URL :: to('/user/profile') }}">
                         <i class="metismenu-icon pe-7s-user"></i>
                         Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL :: to('/user/posts') }}">
+                        <i class="metismenu-icon pe-7s-ribbon"></i>
+                        My posts
                     </a>
                 </li>
                 <li>
@@ -58,6 +71,7 @@
                         Logout
                     </a>
                 </li>
+                @endauth
             </ul>
         </div>
     </div>

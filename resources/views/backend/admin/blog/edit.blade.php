@@ -3,7 +3,7 @@
     {{method_field('PATCH')}}
     <div class="form-group col-md-12 col-sm-12">
         <label for=""> Title </label>
-        <input type="text" class="form-control" id="title" name="title" value="{{ $news->title }}"
+        <input type="text" class="form-control" id="title" name="title" value="{{ $blog->title }}"
                placeholder="" required>
         <span id="error_title" class="has-error"></span>
     </div>
@@ -11,14 +11,14 @@
     <div class="form-group col-md-12 col-sm-12">
         <label for=""> Description </label>
         <textarea type="text" class="form-control" id="description" name="description"
-                  placeholder="">{{ $news->description }}</textarea>
+                  placeholder="">{{ $blog->description }}</textarea>
         <span id="error_description" class="has-error"></span>
     </div>
     <div class="clearfix"></div>
     <div class="form-group col-md-2 col-sm-12">
         <label for=""> Category </label>
         <select name="category" id="category" class="form-control" required>
-            <option value="{{ $news->category }}">{{ $news->category }}</option>
+            <option value="{{ $blog->category }}">{{ $blog->category }}</option>
             <option value="Notice Board">Notice Board</option>
             <option value="Latest News">Latest News</option>
             <option value="Job News">Job News</option>
@@ -28,9 +28,9 @@
     <div class="form-group col-md-3">
         <label for=""> Status </label><br/>
         <input type="radio" name="status" class="flat-green"
-               value="1" {{ ( $news->status == 1 ) ? 'checked' : '' }} /> Active
+               value="1" {{ ( $blog->status == 1 ) ? 'checked' : '' }} /> Active
         <input type="radio" name="status" class="flat-green"
-               value="0" {{ ( $news->status == 0 ) ? 'checked' : '' }}/> In Active
+               value="0" {{ ( $blog->status == 0 ) ? 'checked' : '' }}/> In Active
     </div>
     <div class="col-md-7">
         <label for="photo">Upload Image</label>
@@ -40,7 +40,7 @@
                 <a class="btn btn-success" onclick="$('input[id=photo]').click();">Browse</a>
             </div><!-- /btn-group -->
             <input type="text" name="SelectedFileName" class="form-control" id="SelectedFileName"
-                   value="{{ $news->file_path  }}" readonly>
+                   value="{{ $blog->file_path  }}" readonly>
         </div>
         <div class="clearfix"></div>
         <p class="help-block">File must be jpg, jpeg, png. Slider width 1920px and heigth 760px and less than 2mb</p>
@@ -89,7 +89,7 @@
                 myData.append('_token', CSRF_TOKEN);
 
                 $.ajax({
-                    url: 'news/' + '{{ $news->id }}',
+                    url: 'news/' + '{{ $blog->id }}',
                     type: 'POST',
                     data: myData,
                     dataType: 'json',

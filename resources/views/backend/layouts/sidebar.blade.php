@@ -52,6 +52,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ URL :: to('/admin/posts') }}">
+                        <i class="metismenu-icon pe-7s-ribbon"></i>
+                        Posts
+                    </a>
+                </li>
+                <li>
                     <a href="#">
                         <i class="metismenu-icon pe-7s-menu"></i>
                         Examples

@@ -1,0 +1,149 @@
+.post_small_box
+{
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: left;
+    width: auto;
+    height: auto;
+    min-height: 80px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.text_in_right_down_corner
+{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+.post_small_box_title
+{
+    position: absolute;
+    left: 5%;
+}
+
+.post_small_box_author
+{
+    position: absolute;
+    left: 50%;
+}
+.post_small_box_category
+{
+    position: absolute;
+    left: 70%;
+}
+
+.category_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.category_small_box
+{
+    text-decoration: none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: left;
+    width: 15%;
+    height: auto;
+    min-height: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.category_small_box:hover
+{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category_small_box.selected
+{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post_big_box
+{
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: justify;
+    min-height: 400px;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.post_big_box_title
+{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.post_big_box_description
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.post_big_box_author
+{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+.create_comment_box
+{
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: justify;
+    min-height: 100px;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_box
+{
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: left;
+    width: auto;
+    height: auto;
+    min-height: 80px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.comment_box_author
+{
+    position: absolute;
+    right: 5%;
+}
+
+.comment_box_text
+{
+    position: absolute;
+    left: 5%;
+}
+

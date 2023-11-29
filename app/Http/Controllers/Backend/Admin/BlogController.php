@@ -39,9 +39,12 @@ class BlogController extends Controller
            ->addColumn('file_path', function ($blog) {
               return "<img src='" . asset($blog->file_path) . "' width='60px'>";
            })
-           ->addColumn('title', function ($blog) {
-              return Str::words($blog->title, 10, '...');
-           })
+//             ->addColumn('xxx', function ($blog) {
+//                 return "dsfsfdsfdsfsfsd";
+//             })
+//           ->addColumn('title', function ($blog) {
+//              return Str::words($blog->title, 10, '...');
+//           })
            ->addColumn('status', function ($blog) {
               return $blog->status ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
            })
