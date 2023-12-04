@@ -13,6 +13,11 @@
                         <div class="post_big_box_description">
                             <h2>{{$post->description}}</h2>
                         </div>
+                        @foreach($post->images as $image)
+                            <div class="post_image_box" id="{{$image->id}}">
+                                <img src="{{asset('assets/images/postsImages/'. $post->id . '/' . $image->title)}}" class="images_for_post"/>
+                            </div>
+                        @endforeach
                         <div class="post_big_box_author">
                             <h2>{{$post->user->name}}</h2>
                         </div>

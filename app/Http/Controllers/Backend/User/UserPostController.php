@@ -8,6 +8,7 @@ use App\Services\PostService;
 
 use Illuminate\Http\Request;
 
+use phpDocumentor\Reflection\Type;
 use Yajra\DataTables\DataTables;
 
 use App\DTO\Post\CreatePostDTO;
@@ -30,7 +31,6 @@ class UserPostController extends Controller
     public function getAll(Request $request)
     {
         $posts = $this->postService->getByUserID($request->user()->id);
-        return $posts;
         return Datatables::of($posts)
             ->addColumn('status', function ($post) {
                 return $post->status ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
@@ -56,13 +56,14 @@ class UserPostController extends Controller
     }
 
     public function createPost(Request $request){
-        dd($request->file());
+        $files = $request->file('image');
         $CPDTO = new CreatePostDTO(
             $request->user()->id,
             $request->title,
             $request->description,
             $request->status,
-            $request->category
+            $request->category,
+            $request->file('image')
         );
         $this->postService->create($CPDTO);
         return redirect('/user/posts');
@@ -81,7 +82,9 @@ class UserPostController extends Controller
             $request->title,
             $request->description,
             $request->status,
-            $request->category
+            $request->category,
+            $request->oldImages,
+            $request->file('image')
         );
         $this->postService->update($UPDTO);
         return redirect('/user/posts');

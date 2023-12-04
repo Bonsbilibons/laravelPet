@@ -10,8 +10,20 @@ class UpdatePostDTO
     protected $description;
     protected $status;
     protected $category;
+    protected $newImages;
+    protected $oldImages;
 
-    public function __construct($id, $userID, $title, $description, $status, $category)
+    /**
+     * @param $id
+     * @param $userID
+     * @param $title
+     * @param $description
+     * @param $status
+     * @param $category
+     * @param $newImages
+     * @param $oldImages
+     */
+    public function __construct($id, $userID, $title, $description, $status, $category, $oldImages, $newImages)
     {
         $this->id = $id;
         $this->userID = $userID;
@@ -19,6 +31,8 @@ class UpdatePostDTO
         $this->description = $description;
         $this->status = $status;
         $this->category = $category;
+        $this->newImages = $newImages;
+        $this->oldImages = $oldImages;
     }
 
     public function setId($id): void
@@ -56,6 +70,15 @@ class UpdatePostDTO
         return $this->id;
     }
 
+    public function setNewImages(array $newImages): void
+    {
+        $this->newImages = $newImages;
+    }
+
+    public function setOldImages(array $oldImages): void
+    {
+        $this->oldImages = $oldImages;
+    }
 
     public function getUserId()
     {
@@ -80,6 +103,15 @@ class UpdatePostDTO
     public function getCategory()
     {
         return $this->category;
+    }
+
+    public function getNewImages()
+    {
+        return $this->newImages;
+    }
+    public function getOldImages()
+    {
+        return $this->oldImages;
     }
 
     public function getDataAsArray()

@@ -9,14 +9,16 @@ class CreatePostDTO
     protected $description;
     protected $status;
     protected $category;
+    protected $images;
 
-    public function __construct($userID, $title, $description, $status, $category)
+    public function __construct($userID, $title, $description, $status, $category, array $images)
     {
         $this->userID = $userID;
         $this->title = $title;
         $this->description = $description;
         $this->status = $status;
         $this->category = $category;
+        $this->images = $images;
     }
 
     public function setUserId(int $userID): void
@@ -44,6 +46,12 @@ class CreatePostDTO
         $this->category = $category;
     }
 
+    public function setImages(array $images): void
+    {
+        $this->images = $images;
+    }
+
+
 
     public function getUserId()
     {
@@ -68,6 +76,11 @@ class CreatePostDTO
     public function getCategory()
     {
         return (int)$this->category;
+    }
+
+    public function getImages()
+    {
+        return $this->images;
     }
 
     public function getDataAsArray(): array

@@ -24,7 +24,6 @@ class MainController
         $categories = $this->categoryService->getAll();
         $categoryUsages = $categories->pluck('amount', 'id')->toArray();;
         $categoryList =  $categories->pluck('title', 'id')->toArray();
-        return view('test');
         return view('main_page', [
             'posts' => $posts,
             'categoryList' => $categoryList,
@@ -63,10 +62,4 @@ class MainController
             'currentCategory' => $category
         ]);
     }
-
-    public function test(Request $request)
-    {
-        return ['XXX'=>111, 'YYY'=>222];
-    }
-
 }

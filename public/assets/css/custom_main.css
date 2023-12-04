@@ -147,3 +147,15 @@
     left: 5%;
 }
 
+.images_for_post{
+    max-width: 70%;
+    height: auto;
+    margin: 15px;
+    object-fit: contain;
+    transition: filter 0.3s ease-in-out;
+}
+
+.images_for_post:hover{
+    filter: brightness(0.8);
+}
+

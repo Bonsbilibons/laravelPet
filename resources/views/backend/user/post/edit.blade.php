@@ -13,7 +13,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    {{ Form::open(['route' => 'user.editPost'])}}
+                    {{ Form::open(['route' => 'user.editPost', 'files' => true])}}
                     {{ Form::hidden('id', $post->id) }}
                     <div class="form-group col-md-12 col-sm-12">
                         <label for="">Title</label>
@@ -38,10 +38,34 @@
                         {!! Form::select('category', $categoryList, $post->category->id, ['class' => 'flat-green form-control']) !!}
                     </div>
                     <div class="clearfix"></div>
+                    @foreach($post->images as $image)
+                        <div class="post_image_box" id="{{$image->id}}">
+                            <img src="{{asset('assets/images/postsImages/'. $post->id . '/' . $image->title)}}" class="images_for_post"/>
+                            <input type="hidden" name="oldImages[]" value="{{ $image->title }}">
+                            <div class="clearfix"></div>
+                            <i class="pe-7s-trash" id="{{$image->id}}">Delete</i>
+                        </div>
+                    @endforeach
+                    <br>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-3">
+                        {!! Form::file('image[]', ['class' => 'flat-green form-control', 'multiple' => true]) !!}
+                    </div>
                     {{Form::submit('Update post', ['class'=>'btn btn-success button-submit'])}}
                     {{ Form::close() }}
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+        });
+
+        $('.pe-7s-trash').on('click', function ()
+        {
+            var imageId = $(this).attr('id');
+            $('.post_image_box#' + imageId).remove();
+        });
+    </script>
 @stop

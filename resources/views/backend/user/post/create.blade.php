@@ -39,7 +39,7 @@
                     <div class="clearfix"></div>
                     <div class="form-group col-md-3">
                         <label for=""> Category </label><br/>
-                        {!! Form::file('image', ['class' => 'flat-green form-control']) !!}
+                        {!! Form::file('image[]', ['class' => 'flat-green form-control', 'multiple' => true]) !!}
                     </div>
                     <div class="clearfix"></div>
                     {{Form::submit('Create post', ['class'=>'btn btn-success button-submit'])}}
