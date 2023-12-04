@@ -23,6 +23,8 @@ Route::group([
     function () {
         Route::get('post/{id}', 'PostController@postById')->name('post.by.id');
         Route::post('post/leave-comment', 'PostController@leaveComment')->name('leaveComment');
+        Route::post('post/like-post', 'PostController@likePost')->name('likePost');
+        Route::post('post/dislike-post', 'PostController@dislikePost')->name('dislikePost');
     }
 );
 

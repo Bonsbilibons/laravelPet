@@ -29,7 +29,7 @@ class PostRepository
     }
 
     public function getByID(int $id){
-        return Post::query()->with(['category', 'comments.user'])->find($id);
+        return Post::query()->with(['category', 'comments.user', 'likes'])->find($id);
     }
 
     public function getByUserID(int $userID){

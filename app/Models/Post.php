@@ -51,4 +51,9 @@ class Post extends Model
     {
         return $this->hasMany(PostImages::class, 'post_id');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(PostLikes::class, 'post_id');
+    }
 }

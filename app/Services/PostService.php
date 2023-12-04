@@ -14,6 +14,7 @@ use App\DTO\PostImages\UpdateImagesDTO;
 use App\Repositories\PostCategoryRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\PostImagesRepository;
+use App\Repositories\PostLikesRepository;
 
 
 
@@ -23,11 +24,18 @@ class PostService
     private $postRepository;
     private $postCategoryRepository;
     private  $postImagesRepository;
-    public function __construct(PostRepository $postRepository, PostCategoryRepository $postCategoryRepository, PostImagesRepository $postImagesRepository)
+    private $postLikesRepository;
+    public function __construct(
+        PostRepository $postRepository,
+        PostCategoryRepository $postCategoryRepository,
+        PostImagesRepository $postImagesRepository,
+        PostLikesRepository $postLikesRepository
+    )
     {
         $this->postRepository = $postRepository;
         $this->postCategoryRepository = $postCategoryRepository;
         $this->postImagesRepository = $postImagesRepository;
+        $this->postLikesRepository = $postLikesRepository;
     }
 
     public function getAll(){
@@ -157,5 +165,14 @@ class PostService
         }
 
         return $this->postRepository->update($postDTO);
+    }
+
+    public function likePost($postId, $userId)
+    {
+        return $this->postLikesRepository->like($postId, $userId);
+    }
+    public function dislikePost($postId, $userId)
+    {
+        return $this->postLikesRepository->dislike($postId, $userId);
     }
 }

@@ -21,6 +21,10 @@
                         <div class="post_big_box_author">
                             <h2>{{$post->user->name}}</h2>
                         </div>
+                        <button class="like_button" type="button">Like</button>
+                        <div class="likes_of_post">
+                            <h2 id="likes_of_post">{{$post->likes->count()}}</h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,4 +72,65 @@
         </div>
     @endforeach
 
+    {{ Html::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}
+    <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $('.like_button').on("click", function ()
+        {
+            var likeButton = $('.like_button');
+            if($(this).hasClass('liked'))
+            {
+                $.ajax({
+                    url: '/post/dislike-post',
+                    type: 'POST',
+                    data: {
+                        postId: '{{$post->id}}',
+                    },
+                    headers: {
+                        "X-CSRF-TOKEN": CSRF_TOKEN,
+                        "Authorization": "Bearer {{ Cookie::get('access_token') }}",
+                    },
+                    "dataType": 'json',
+                    success: function(response) {
+                        likeButton.text('Like');
+                        likeButton.toggleClass('liked');
+
+                        var likesCount = parseInt($('#likes_of_post').text());
+                        $('#likes_of_post').text(likesCount - 1);
+
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    url: '/post/like-post',
+                    type: 'POST',
+                    data: {
+                        postId: '{{$post->id}}',
+                    },
+                    headers: {
+                        "X-CSRF-TOKEN": CSRF_TOKEN,
+                        "Authorization": "Bearer {{ Cookie::get('access_token') }}",
+                    },
+                    "dataType": 'json',
+                    success: function(response) {
+                        likeButton.text('Liked');
+                        likeButton.toggleClass('liked');
+
+                        var likesCount = parseInt($('#likes_of_post').text());
+                        $('#likes_of_post').text(likesCount + 1);
+
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            }
+        });
+    </script>
 @stop

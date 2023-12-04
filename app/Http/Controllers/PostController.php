@@ -37,4 +37,13 @@ class PostController
         $this->postCommentService->leaveComment($leaveCommentDTO);
         return redirect('post/' . $request->post_id);
     }
+
+    public function likePost(Request $request)
+    {
+        return $this->postService->likePost((int)$request->postId, (int)$request->user()->id);
+    }
+    public function dislikePost(Request $request)
+    {
+        return $this->postService->dislikePost((int)$request->postId, (int)$request->user()->id);
+    }
 }
