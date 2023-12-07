@@ -27,6 +27,14 @@ class PostRepository
             ->orderby('created_at', 'desc')
             ->get();
     }
+    public function getByUserIdAndPage($userId){
+        return Post::query()
+            ->where('status', 1)
+            ->where('user_id', $userId)
+            ->with(['category', 'user'])
+            ->orderby('created_at', 'desc')
+            ->get();
+    }
 
     public function getByID(int $id){
         return Post::query()->with(['category', 'comments.user', 'likes'])->find($id);

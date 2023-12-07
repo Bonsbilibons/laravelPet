@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use phpDocumentor\Reflection\Types\This;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -56,5 +57,22 @@ class User extends Authenticatable implements JWTSubject
    {
       return [];
    }
+
+    public function Posts()
+    {
+       return $this->hasMany(Post::class, 'user_id');
+    }
+
+    public function Likes()
+    {
+        return $this->hasManyThrough(
+            PostLikes::class,
+            Post::class,
+            'user_id',
+            'post_id',
+            'id',
+            'id'
+        );
+    }
 
 }

@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Services\CategoryService;
 use App\Services\PostService;
+use App\Services\UserService;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Yajra\DataTables\DataTables;
 
 class MainController
 {
     protected $postService;
     protected $categoryService;
-    public function __construct(PostService $postService, CategoryService $categoryService)
+    protected $userService;
+    public function __construct(PostService $postService, CategoryService $categoryService, UserService $userService)
     {
         $this->postService = $postService;
         $this->categoryService = $categoryService;
+        $this->userService = $userService;
     }
 
     public function mainPage(Request $request)
@@ -24,7 +29,11 @@ class MainController
         $categories = $this->categoryService->getAll();
         $categoryUsages = $categories->pluck('amount', 'id')->toArray();;
         $categoryList =  $categories->pluck('title', 'id')->toArray();
+        $topUsersByPosts = $this->userService->topByPosts(5);
+        $topUsersByLikes = $this->userService->topByLikes(5);
         return view('main_page', [
+            'topUsersByPosts' =>$topUsersByPosts,
+            'topUsersByLikes' => $topUsersByLikes,
             'posts' => $posts,
             'categoryList' => $categoryList,
             'categoryUsages' => $categoryUsages,

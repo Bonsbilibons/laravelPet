@@ -54,6 +54,12 @@ class PostService
             ->take(10);
     }
 
+    public function getByUserIdAndPage($UserId, $page){
+        return $this->postRepository->getByUserIdAndPage($UserId)
+            ->skip($page * 10)
+            ->take(10);
+    }
+
     public function getByID(int $id){
         return $this->postRepository->getByID($id);
     }

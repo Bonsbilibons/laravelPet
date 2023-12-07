@@ -2,41 +2,59 @@
 @section('title', 'Main page')
 @section('content')
 
-    <div class="app-page-title">
-        <div class=page-title-wrapper">
-            <div class="category_container">
-                @foreach($categoryList as $categoryId => $categoryTitle)
-                    <div class="category_small_box" categoryTitle="{{$categoryTitle}}">
-                        <h5>{{ $categoryTitle }}</h5>
-                        <h5>{{ $categoryUsages[$categoryId] }} usages</h5>
-                    </div>
+
+    <div class="category_container">
+        @foreach($categoryList as $categoryId => $categoryTitle)
+            <div class="main-card mb-3 card">
+                <div class="category_small_box" categoryTitle="{{$categoryTitle}}">
+                    <h5>{{ $categoryTitle }} ({{ $categoryUsages[$categoryId] }})</h5>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    <div class="top_users_info_container">
+        <div class="main-card mb-3 card">
+            <div class="top_users_info">
+                <h4>TOP USERS BY COUNT OF POSTS</h4>
+            @foreach($topUsersByPosts as $userPosition => $user)
+                <h5>{{$userPosition + 1}}. {{$user->name}} : {{$user->posts_count}}</h5>
+            @endforeach
+            </div>
+        </div>
+        <div class="main-card mb-3 card">
+            <div class="top_users_info">
+                <h4>TOP USERS BY COUNT OF Likes</h4>
+                @foreach($topUsersByLikes as $userPosition => $user)
+                    <h5>{{$userPosition + 1}}. {{$user->name}} : {{$user->likes_count}}</h5>
                 @endforeach
             </div>
         </div>
     </div>
 
 
-        <div class="col-md-12 col-sm-12">
+        <div class="post_main_container">
         @foreach($posts as $post)
             <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <div class="post_small_box" postId="{{$post->id}}">
-                        <div class="post_small_box_title">
-                            <h2>{{$post->title}}</h2>
-                        </div>
-                        <div class="post_small_box_author">
-                            <h2>{{$post->user->name}}</h2>
-                        </div>
-                        <div class="post_small_box_category">
-                            <h2>{{$post->category->title}}</h2>
-                        </div>
-                        <div class="text_in_right_down_corner">
-                            {{ date('d.m.y', strtotime($post->created_at)) }}
-                        </div>
+                <div class="post_small_box" postId="{{$post->id}}">
+                    <div class="post_small_box_title">
+                        <h2>{{$post->title}}</h2>
+                    </div>
+                    <div class="post_small_box_author">
+                        <a href="{{ URL :: to('user/public-profile/' . $post->user->id ) }}">
+                        <h2>{{$post->user->name}}</h2>
+                        </a>
+                    </div>
+                    <div class="post_small_box_category">
+                        <h2>{{$post->category->title}}</h2>
+                    </div>
+                    <div class="text_in_right_down_corner">
+                        {{ date('d.m.y', strtotime($post->created_at)) }}
                     </div>
                 </div>
             </div>
         @endforeach
+
             <div class="text-center">
                 @if($currentPage == 0)
                 @else
