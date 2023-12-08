@@ -11,7 +11,7 @@ class CreatePostDTO
     protected $category;
     protected $images;
 
-    public function __construct($userID, $title, $description, $status, $category, array $images)
+    public function __construct($userID, $title, $description, $status, $category, $images)
     {
         $this->userID = $userID;
         $this->title = $title;

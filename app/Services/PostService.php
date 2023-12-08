@@ -100,16 +100,17 @@ class PostService
 
         $destinationPath = public_path('assets/images/postsImages/' . $post->id);
         mkdir($destinationPath, 0777, true);
-        foreach ($postDTO->getImages() as $image)
-        {
-            $imageName = $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
-        };
-        $addPostImagesDTO = new AddImagesDTO(
-            $post->id,
-            $postDTO->getImages()
-        );
-        $this->postImagesRepository->addImages($addPostImagesDTO);
+        if($postDTO->getImages()) {
+            foreach ($postDTO->getImages() as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->move($destinationPath, $imageName);
+            };
+            $addPostImagesDTO = new AddImagesDTO(
+                $post->id,
+                $postDTO->getImages()
+            );
+            $this->postImagesRepository->addImages($addPostImagesDTO);
+        }
 
         return true;
     }

@@ -6,9 +6,14 @@ use App\Services\CategoryService;
 use App\Services\PostService;
 use App\Services\UserService;
 
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+
+use PHPUnit\Framework\Constraint\Count;
 use Yajra\DataTables\DataTables;
 
 class MainController
@@ -31,10 +36,11 @@ class MainController
         $categoryList =  $categories->pluck('title', 'id')->toArray();
         $topUsersByPosts = $this->userService->topByPosts(5);
         $topUsersByLikes = $this->userService->topByLikes(5);
+
         return view('main_page', [
+            'posts' => $posts,
             'topUsersByPosts' =>$topUsersByPosts,
             'topUsersByLikes' => $topUsersByLikes,
-            'posts' => $posts,
             'categoryList' => $categoryList,
             'categoryUsages' => $categoryUsages,
             'currentPage' => 0

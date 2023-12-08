@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CheckLastUserActivity;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('CheckLastUserActivity')->daily();
     }
 
     /**
@@ -35,7 +37,9 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
+        $this->command(\App\Console\Commands\CheckLastUserActivity::class, function (){
+            $this->call('CheckLastUserActivity');
+        });
         require base_path('routes/console.php');
     }
 }
