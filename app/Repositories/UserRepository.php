@@ -9,7 +9,7 @@ class UserRepository
 {
     public function findById($userId)
     {
-        return User::query()->find($userId);
+        return User::query()->withCount('Followers')->find($userId);
     }
 
     public function topByPosts()
@@ -20,5 +20,9 @@ class UserRepository
     public function topByLikes()
     {
         return User::query()->withCount(['Likes'])->orderBy('likes_count', 'desc')->get();
+    }
+    public function topByFollowers()
+    {
+        return User::query()->withCount(['Followers'])->orderBy('followers_count', 'desc')->get();
     }
 }

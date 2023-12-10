@@ -36,11 +36,13 @@ class MainController
         $categoryList =  $categories->pluck('title', 'id')->toArray();
         $topUsersByPosts = $this->userService->topByPosts(5);
         $topUsersByLikes = $this->userService->topByLikes(5);
+        $topUsersByFollowers = $this->userService->topByFollowers(5);
 
         return view('main_page', [
             'posts' => $posts,
             'topUsersByPosts' =>$topUsersByPosts,
             'topUsersByLikes' => $topUsersByLikes,
+            'topUsersByFollowers' => $topUsersByFollowers,
             'categoryList' => $categoryList,
             'categoryUsages' => $categoryUsages,
             'currentPage' => 0

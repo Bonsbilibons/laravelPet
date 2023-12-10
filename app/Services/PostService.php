@@ -182,4 +182,9 @@ class PostService
     {
         return $this->postLikesRepository->dislike($postId, $userId);
     }
+
+    public function isPostLiked($userId, $postId)
+    {
+        return $this->postLikesRepository->isPostLiked($userId, $postId);
+    }
 }

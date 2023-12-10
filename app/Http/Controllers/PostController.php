@@ -46,4 +46,9 @@ class PostController
     {
         return $this->postService->dislikePost((int)$request->postId, (int)$request->user()->id);
     }
+
+    public function isPostLiked(Request $request)
+    {
+        return $this->postService->isPostLiked($request->userId, $request->postId);
+    }
 }

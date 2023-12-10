@@ -24,3 +24,7 @@ Route::get('/personal-posts', 'UserPostController@getAll')->name('personalPosts'
 
 Route::get('/public-profile/{userId}', 'UserCommonController@publicProfile')->name('publicProfile');
 Route::get('/public-profile/{userId}/{page}', 'UserCommonController@publicProfileAndPostsPage')->name('publicProfileAndPostsPage');
+
+Route::POST('/follow-on-user', 'UserCommonController@followOnUser')->name('followOnUser');
+Route::POST('/unfollow-on-user', 'UserCommonController@unfollowOnUser')->name('unfollowOnUser');
+Route::POST('/is-followed-on-user', 'UserCommonController@isFollowedOnUser')->name('isFollowedOnUser');

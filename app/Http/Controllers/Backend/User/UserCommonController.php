@@ -46,4 +46,18 @@ class UserCommonController extends Controller
         ]);
     }
 
+    public function followOnUser(Request $request)
+    {
+        return $this->userService->followOnUser($request->authorId, $request->followerId);
+    }
+
+    public function unfollowOnUser(Request $request)
+    {
+        return $this->userService->unfollowOnUser($request->authorId, $request->followerId);
+    }
+
+    public function isFollowedOnUser(Request $request)
+    {
+        return $this->userService->isFollowedOnUser($request->authorId, $request->followerId);
+    }
 }

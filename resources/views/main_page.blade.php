@@ -16,6 +16,14 @@
     <div class="top_users_info_container">
         <div class="main-card mb-3 card">
             <div class="top_users_info">
+                <h4>TOP USERS BY COUNT OF FOLLOWERS</h4>
+                @foreach($topUsersByFollowers as $userPosition => $user)
+                    <h5>{{$userPosition + 1}}. {{$user->name}} : {{$user->followers_count}}</h5>
+                @endforeach
+            </div>
+        </div>
+        <div class="main-card mb-3 card">
+            <div class="top_users_info">
                 <h4>TOP USERS BY COUNT OF POSTS</h4>
             @foreach($topUsersByPosts as $userPosition => $user)
                 <h5>{{$userPosition + 1}}. {{$user->name}} : {{$user->posts_count}}</h5>

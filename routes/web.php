@@ -25,20 +25,9 @@ Route::group([
         Route::post('post/leave-comment', 'PostController@leaveComment')->name('leaveComment');
         Route::post('post/like-post', 'PostController@likePost')->name('likePost');
         Route::post('post/dislike-post', 'PostController@dislikePost')->name('dislikePost');
+        Route::post('post/is-post-liked', 'PostController@isPostLiked')->name('isPostLiked');
     }
 );
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::group([
     'namespace' => 'Frontend',

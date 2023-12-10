@@ -75,6 +75,37 @@
     {{ Html::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $(document).ready(function () {
+            var likeButton = $('.like_button');
+            $.ajax({
+                url: '/post/is-post-liked',
+                type: 'POST',
+                data: {
+                    userId: '{{ Auth::user()->id }}',
+                    postId: '{{$post->id}}',
+                },
+                headers: {
+                    "X-CSRF-TOKEN": CSRF_TOKEN,
+                    "Authorization": "Bearer {{ Cookie::get('access_token') }}",
+                },
+                "dataType": 'json',
+                success: function(response) {
+                    if(response === 1)
+                    {
+                        likeButton.text('Liked');
+                        likeButton.toggleClass('liked');
+                    }
+                    else{
+                    }
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+
+
         $('.like_button').on("click", function ()
         {
             var likeButton = $('.like_button');

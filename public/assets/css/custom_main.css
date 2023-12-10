@@ -309,3 +309,22 @@
     position: relative;
     text-align: center;
 }
+
+.follow_button {
+    background-color: rgba(196, 30, 30, 0.71);
+    border-radius: 5px;
+    color: white;
+    border: 0px;
+    text-align: center;
+    width: 120px;
+    height: 45px;
+}
+
+.follow_button:hover{
+    background-color: #0e7c0e;
+}
+
+.follow_button.followed {
+    background-color: black;
+    color: white;
+}
