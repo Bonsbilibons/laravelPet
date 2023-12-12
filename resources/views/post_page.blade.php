@@ -142,6 +142,7 @@
                     type: 'POST',
                     data: {
                         postId: '{{$post->id}}',
+                        likeToUserId: '{{$post->user->id}}'
                     },
                     headers: {
                         "X-CSRF-TOKEN": CSRF_TOKEN,

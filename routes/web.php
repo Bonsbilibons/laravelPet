@@ -91,3 +91,7 @@ Route::group([
 //   }
 //});
 
+//Route::get('fire', function () {
+//    event(new App\Events\LikeEvent());
+//    return "event fired";
+//});

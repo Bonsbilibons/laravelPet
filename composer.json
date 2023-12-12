@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "laravelcollective/html": "^6.1",
+        "predis/predis": "^2.2",
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-permission": "^3.13",
         "tymon/jwt-auth": "^1.0",

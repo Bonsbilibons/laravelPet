@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\User;
 
+use App\Events\FollowEvent;
 use App\Http\Controllers\Controller;
 
 use App\Services\PostService;
@@ -48,6 +49,7 @@ class UserCommonController extends Controller
 
     public function followOnUser(Request $request)
     {
+        event(new FollowEvent((int)$request->user()->id, $request->user()->name, (int)$request->authorId ));
         return $this->userService->followOnUser($request->authorId, $request->followerId);
     }
 

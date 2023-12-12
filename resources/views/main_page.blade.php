@@ -79,7 +79,11 @@
                 </a>
             </div>
         </div>
+    </div>
 
+    <div id="alert" class="alert-common">
+        <div class="alert-close">✖</div>
+        <div class="alert-message"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -96,4 +100,6 @@
             window.location.href = url;
         });
     </script>
+
+    @extends('js.socket_script')
 @stop
