@@ -14,6 +14,8 @@ use Yajra\DataTables\DataTables;
 use App\DTO\Post\CreatePostDTO;
 use App\DTO\Post\UpdatePostDTO;
 
+use App\Request\CreatePostRequest;
+
 class UserPostController extends Controller
 {
     protected $postService;
@@ -55,8 +57,7 @@ class UserPostController extends Controller
         return view('backend.user.post.create', ['categoryList' => $categoryList] );
     }
 
-    public function createPost(Request $request){
-        $files = $request->file('image');
+    public function createPost(CreatePostRequest $request){
         $CPDTO = new CreatePostDTO(
             $request->user()->id,
             $request->title,

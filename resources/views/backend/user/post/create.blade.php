@@ -2,6 +2,16 @@
 @section('title', ' New Post ')
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
