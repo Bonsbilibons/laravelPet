@@ -3,11 +3,21 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
+    'as' => 'error.'
+    ],
+    function ()
+    {
+    Route::get('error', 'ErrorController@error')->name('common.error');
+    }
+);
+
+Route::group([
     'as' => 'main.',
 //    'middleware' => 'custom.auth:user'
-    'middleware' => 'auth:user',
+    'middleware' => ['auth:user', 'blacklist'],
     ],
-    function () {
+    function ()
+    {
         Route::get('main', 'MainController@mainPage')->name('main_page');
         Route::get('main/{pageId}', 'MainController@mainPageById')->name('main.page.id');
         Route::get('main/getAllActive', 'MainController@getAllActive')->name('main.getAllActive');
